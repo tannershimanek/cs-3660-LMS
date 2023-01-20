@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTB - League</title>
+    <link href="./css/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- https://www.redbull.com/au-en/best-mtb-events-in-the-world -->
+    <!-- https://uvu.instructure.com/courses/553663/assignments/6535510 -->
+
+    <div class="shell">
+      <div class="row head">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
+          <div class="container-fluid">
+            <a class="navbar-brand m-1" href="#">
+              <img src="./imgs/mtb-logo.png" style="width: 90px; opacity: .8;"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active m-3" aria-current="page" href="#">Home</a>
+                <a class="nav-link m-3" href="#">Teams</a>
+                <a class="nav-link m-3" href="#">Locations</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="row hero-container parallax">
+        <picture>
+          <source srcset="./imgs/rb.avif" media="(min-width: 991px)"/>
+          <source srcset="./imgs/rb-m-2.avif" media="(min-width: 478px)"/>
+          <img class="hero position-fixed" src="./imgs/rb-xs.avif" alt="bike-race" width="100%" height="70%"
+            style="object-fit: cover; z-index: -1; max-width: 1320px; max-height: 65%;"/>
+        </picture>
+      </div>
+
+
+      <!-- start working with aside and stuff here -->
+
+      <section class="row bg-white mb-5 mt-1">
+        <aside class="container-fluid col-lg-2">
+          <div class="row d-flex align-items-center text-center text-dark bg-white p-2 h-50">
+            <!-- <div><span class="text-primary">|</span> <span>Bike</span></div> -->
+            <div class="text-decoration-underline text-danger"><h2 class="text-primary" style="opacity: 0.8;">00</h2></div>
+          </div>
+        </aside>
+
+        <main class="container-fluid col-lg-10">
+          <div class="row text-center text-dark bg-white p-5">
+            <h1> 2023 world mountain bike league</h1>
+          </div>
+          <div class="row m-3">
+            <p>The 2023 world mountain bike league is an invitation-only freeride mountain bike competition held near Zion National Park in Virgin, Utah, United States, just to the north of Gooseberry Mesa. From 2001 till 2004, it was held off the Kolob Terrace Road, on the western boundary of Zion National Park. The premier big-mountain freeride event showcases the world's top riders as they took on some of their biggest challenges yet.</p>
+          </div>
+        </main>
+      </section>
+
+      
+      <section class="row bg-light pb-5 pt-5">
+        <aside class="container-fluid col-lg-2 mt-4">
+          <div class=" num row d-flex align-items-center text-center text-dark p-2 h-0">
+            <div class="text-decoration-underline text-danger"><h2 class="text-primary " style="opacity: 0.8;">01</h2></div>
+          </div>
+          <div class="row h-50"></div>
+        </aside>
+
+        <main class="container-fluid col-lg-10">
+          <div class="row text-center text-dark p-3">
+            <h2>Watch the top runs of 2022</h2>
+          </div>
+          <div class="row m-3">
+            <p>This year marked the 16th edition of the legendary freeride mountain bike event and Red Bull Rampage 2022 did not disappoint. Canadian Brett Rheeder triumphed on a near perfect day in Virgin, Utah, with a run that combined technical trick mastery with pure flow. Watch Rheeder's winning run in the video player above.</p>
+          </div>
+          <div class="row m-3">
+            <iframe style="max-height: 50vh;" width="560" height="515" src="https://www.youtube.com/embed/EZVy-Wrncyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+        </main>
+      </section>
+
+
+      <section class="row bg-white pt-5 pb-5">
+        <aside class="container-fluid col-lg-2">
+          <div class="row d-flex align-items-center text-center text-dark bg-white p-2 h-25">
+            <div class="text-decoration-underline text-danger"><h2 class="text-primary" style="opacity: 0.8;">02</h2></div>
+          </div>
+          <div class="row h-50"></div>
+        </aside>
+
+        <main class="container-fluid col-lg-10">
+          <div class="row text-center text-dark bg-white p-5">
+            <h2>Upcoming events</h2>
+          </div>
+          <div class="row m-3 d-flex justify-content-center gap-3">
+            <div class="d-flex align-items-end gap-4" style="max-width: 450px;">
+              <img src="./imgs/test2.avif" alt="..." class="img-thumbnail" style="width: 150px;">
+              <div>
+                <h5>Innsbruck Austria</h5>
+                <p>Saturday, June 4th</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-end gap-4" style="max-width: 450px;">
+              <img src="./imgs/test3.avif" alt="..." class="img-thumbnail" style="width: 150px;">
+              <div>
+                <h5>Czech Republic</h5>
+                <p class="d-flex align-items-center gap-3">Monday, April 28th <span class="badge bg-warning">going fast</span></p>
+              </div>
+            </div>
+            <div class="d-flex align-items-end gap-4" style="max-width: 450px;">
+              <img src="./imgs/test4.avif" alt="..." class="img-thumbnail" style="width: 150px;">
+              <div>
+                <h5>Moab Utah</h5>
+                <p class="d-flex align-items-center gap-3">Monday, April 1st <span class="badge bg-danger">sold out</span></p>
+              </div>
+            </div>
+            <div class="d-flex align-items-end gap-4" style="max-width: 450px;">
+              <img src="./imgs/test5.avif" alt="..." class="img-thumbnail" style="width: 150px;">
+              <div>
+                <h5>Wales, UK</h5>
+                <p class="d-flex align-items-center gap-3">TBD <span class="badge bg-info">new</span></p>
+              </div>
+            </div>
+            <div class="d-flex align-items-end gap-4" style="max-width: 450px;">
+              <img src="./imgs/test6.avif" alt="..." class="img-thumbnail" style="width: 150px;">
+              <div>
+                <h5>Vernal Utah</h5>
+                <p class="d-flex align-items-center gap-3">Monday, April 1st <span class="badge bg-danger">sold out</span></p>
+              </div>
+            </div>
+            <div class="d-flex align-items-end gap-4" style="max-width: 450px;">
+              <img src="./imgs/test.jpeg" alt="..." class="img-thumbnail" style="width: 150px;">
+              <div>
+                <h5>Whistler Canada</h5>
+                <p class="d-flex align-items-center gap-3">Monday, July 2nd</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </section>
+
+    </div>
+
+
+    <footer class="container-fluid text-primary bg-light mt-5 p-5">
+        Copyright 2022
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+      // parallax
+      $(window).scroll(function(){
+
+        // Add parallax scrolling to all images in .paralax-image container
+        $('.parallax').each(function(){
+          // only put top value if the window scroll has gone beyond the top of the image
+          if ($(this).offset().top < $(window).scrollTop()) {
+            // Get ammount of pixels the image is above the top of the window
+            var difference = $(this).offset().top - $(window).scrollTop();
+            // Top value of image is set to half the amount scrolled
+            // (this gives the illusion of the image scrolling slower than the rest of the page)
+            var half = (difference / 2) + 'px';
+
+            $(this).find('img').css('top', half);
+            $(this).find('img').css("opacity", 1 - $(window).scrollTop() / 700);
+          } else {
+            // if image is below the top of the window set top to 0
+            $(this).find('img').css('top', '0');
+            $(this).find('img').css("opacity", 1);
+          }
+        });
+
+      });
+      
+    </script>
+</body>
+</html>
