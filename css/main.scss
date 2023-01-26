@@ -19,7 +19,7 @@ $theme-colors: (
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 
-div.head nav {
+.head nav {
     max-width: 1350px;
     margin: auto; 
 }
@@ -29,7 +29,7 @@ main {
     margin: auto;
 }
 
-div.shell {
+.shell {
     max-width: 1320px;
     margin: auto;
 }
@@ -68,5 +68,82 @@ h5 {
     font-weight: 600;
 }
 
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+table:hover {
+    cursor: pointer;
+}
+
+#us-tool-tip {
+    background: #333;
+    color: white;
+    font-weight: bold;
+    padding: 4px 8px;
+    font-size: 13px;
+    border-radius: 4px;
+    display: none;
+}
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+#us-tool-tip[data-popper-placement^='top'] > #arrow {
+    bottom: -4px;
+}
+
+#us-tool-tip[data-show] {
+    display: block;
+}
+
+.animate-1 {
+    transition: transform .1s ease-in;
+}
+
+.animate-1:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+
+
+
+.bg-image {
+    background-image: url("../imgs/test6.avif");
+    background-position: center;
+    max-width: 55rem;
+    height: 25rem;
+    position: relative;
+    // left: 13px;
+    border-radius: 1px;
+    margin: auto;
+    // transition: transform .1s ease-in;
+}
+
+// .bg-image:hover {
+//     transform: scale(1.01);
+// }
+
 
 // sass --watch ./css/main.scss ./css/main.css
+
+
