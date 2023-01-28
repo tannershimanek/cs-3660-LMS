@@ -398,50 +398,6 @@
     <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
     <!-- parallax + popovers -->
     <script src="../js/app.js"></script>
-    <script>
-
-        let team = '';
-        let id = '';
-
-        let exampleModal = document.getElementById('exampleModal')
-        exampleModal.addEventListener('show.bs.modal', function (event) {
-            let button = event.relatedTarget;
-            let recipient = button.getAttribute('data-bs-whatever');
-            let modalBodyInput = exampleModal.querySelector('#team');
-            modalBodyInput.innerText = recipient;
-            team = recipient;
-            id = button.getAttribute('data-bs-id');
-        });
-
-        const toast = $('#liveToast');
-        const deleteBtn = $('#delete-btn').click(() => {
-            // delete element
-            $(`#${id}-btn`).detach();
-            $(`#${id}-tool-tip`).detach();
-
-            // show toast
-            toast.removeClass('hide');
-            toast.addClass('show');
-
-            // update val
-            $('#team-name-msg').html(`<span>${team}</span>`);
-            console.log($('#team-name-msg'));
-
-            // auto close after delay
-            setTimeout(() => {
-                toast.removeClass('show');
-                toast.addClass('hide');
-            }, 3000);
-        });
-
-        const closeToast = $("#close-toast").click(() => {
-            toast.removeClass('show');
-            toast.addClass('hide');
-
-        });
-    </script>
-
-
 </body>
 
 </html>
