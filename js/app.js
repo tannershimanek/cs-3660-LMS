@@ -1,21 +1,115 @@
-// handle parallax effect for hero image.
+/* 
+  --- --- --- ---
+  Parallax logic 
+  --- --- --- ---
+*/
 $(window).scroll(function(){
   $('.parallax').each(function(){
-    // only put top value if the window scroll has gone beyond the top of the image
     if ($(this).offset().top < $(window).scrollTop()) {
-      // Get the num of pixels where image is above the top of the window
-      var diff = $(this).offset().top - $(window).scrollTop();
-      // Top value of image is set to half the amount scrolled
-      // this gives the illusion of the image scrolling slower than the rest of the page
-      var half = (diff / 2) + 'px';
-
+      let diff = $(this).offset().top - $(window).scrollTop();
+      let half = (diff / 2) + 'px';
       $(this).find('img').css('top', half);
-      // start at 100% then subtract
       $(this).find('img').css("opacity", 1 - $(window).scrollTop() / 700); 
     } else {
       $(this).find('img').css('top', '0');
-      // set opacity back to 100% if image is at the top
       $(this).find('img').css("opacity", 1);
     }
   });
+});
+
+
+/* 
+  --- --- --- ---
+  Popover logic 
+  --- --- --- ---
+*/
+function popover(item) {
+  const btn = document.querySelector(`#${item}-btn`);
+  const toolTip = document.querySelector(`#${item}-tool-tip`);
+  const popperInstance = Popper.createPopper(btn, toolTip, {
+      modifiers: [
+          {
+          name: 'offset',
+          options: {
+              offset: [0, -150],
+          },
+          },
+      ],
+    });
+  function show() {
+    toolTip.setAttribute('data-show', '');
+    popperInstance.update();
+  }
+
+  function hide() {
+      toolTip.removeAttribute('data-show');
+  }
+
+  const showEvents = ['mouseenter', 'focus'];
+  const hideEvents = ['mouseleave', 'blur'];
+
+  showEvents.forEach((event) => {
+      btn.addEventListener(event, show);
+  });
+
+  hideEvents.forEach((event) => {
+      btn.addEventListener(event, hide);
+  });
+}
+
+
+
+/* 
+  --- --- --- ---
+  Build popovers 
+  --- --- --- ---
+*/
+const countries = ['us', 'ca', 'mx', 'jp', 'sw', 'w'];
+countries.forEach(el => popover(el));
+
+
+
+/* 
+  --- --- --- ---
+  Toast logic 
+  --- --- --- ---
+*/
+let team = '';
+let id = '';
+
+let exampleModal = document.getElementById('exampleModal')
+exampleModal.addEventListener('show.bs.modal', function (event) {
+    let button = event.relatedTarget;
+    let recipient = button.getAttribute('data-bs-whatever');
+    let modalBodyInput = exampleModal.querySelector('#team');
+    modalBodyInput.innerText = recipient;
+    team = recipient;
+    id = button.getAttribute('data-bs-id');
+});
+
+const toast = $('#liveToast');
+const deleteBtn = $('#delete-btn').click(() => {
+    // delete element
+    $(`#${id}-btn`).detach();
+    $(`#${id}-tool-tip`).detach();
+
+    // show toast
+    toast.removeClass('hide');
+    toast.addClass('show');
+
+    // update val
+    $('#team-name-msg').html(`<span>${team}</span>`);
+    console.log($('#team-name-msg'));
+
+    // auto close after delay
+    setTimeout(() => {
+        toast.removeClass('show');
+        toast.addClass('hide');
+    }, 3000);
+});
+
+const closeToast = $("#close-toast").click(() => {
+    toast.removeClass('show');
+    toast.addClass('hide');
+    
 });
