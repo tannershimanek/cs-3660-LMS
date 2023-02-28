@@ -1,9 +1,43 @@
 export default class ListView {
-    constructor(storage) {
+    constructor(storage, options={}) {
         this.storage = storage;
+        this.options = options;
         console.log('ListView constructor');
+        this.initView();
     }
 
+    get $headaerIcon() {
+        return $(`#${this.storage.sortCol}-${this.storage.sortDir}`);
+    }
+
+    get $listContainer() {
+        return $(`#${this.options.listContainerId}`);
+    }
+
+    get $alertContainer() {
+        return $(`#${this.options.alertContainerId}`);
+    }
+
+    get $alertContainerId() {
+        return this.options.alertContainerId;
+    }
+
+    get $modal() {
+        return $(`#${this.options.modalContainerId}`);
+    }
+    
+    get entitySingle() {
+        return this.options.entitySingle;
+    }
+
+    get $resetBtn() {
+        return $(`#${this.options.resetBtnId}`);
+    }
+
+    initView() {
+        this.bindWrapperEvents();
+    }
+    
     async render() {
         let data = this.storage.list; // getters dont need parenthesis
         console.log('ListView render');
@@ -12,26 +46,43 @@ export default class ListView {
         <table class="table table-hover">
             <thead class="bg-light">
                 <tr>
-                    <th class="table-header" scope="col" data-col="name">Team name</th>
-                    <th class="table-header" scope="col" >Coach name</th>
-                    <th class="table-header" scope="col" >Coach phone</th>
-                    <th class="table-header" scope="col" ># of riders</th>
-                    <th class="table-header" scope="col-lg" >Actions</th>
+                    <th class="table-header" scope="col" data-col="name">Team name
+                        <i id="name-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="name-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    </th>
+                    <th class="table-header" scope="col" >Coach name
+                        <i id="coach-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="coach-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    </th>
+                    <th class="table-header" scope="col" >Coach phone
+                        <i id="phone-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="phone-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    </th>
+                    <th class="table-header" scope="col" ># of riders
+                        <i id="riders-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="riders-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    </th>
+                    <th class="table-header" scope="col-lg" >Actions
+                        <i id="actions-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="actions-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    </th>
                 </tr>
             </thead>
             <tbody>`
 
+            // todo: icons
+            // todo: popovers
         for (let row of data) {
             html += `<tr id="${row.id}" aria-describedby="tooltip">
                 <tr id="us-btn" aria-describedby="tooltip">
                     <th scope="row">${row.name}</th>
-                    <td>${row.coachFirst} ${row.coachLast}</td>
-                    <td>+1 202-918-2132</td>
-                    <td>3</td>
+                    <td>${row.coachName}</td>
+                    <td>${row.coachPhone}</td>
+                    <td>${row.numPlayers}</td>
                     <td>
                         <div class="d-flex justify-content-center align-items-baseline gap-2 flex-wrap">
-                            <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash"
-                                type="button" data-bs-toggle="modal" data-bs-id="us"
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash" type="button" data-bs-toggle="modal" data-bs-id="us"
                                 data-bs-target="#exampleModal" data-bs-whatever="United States"></i>
                         </div>
                     </td>
@@ -43,6 +94,7 @@ export default class ListView {
 
         html += `</tbody></table>`;
 
+        // $(this.$listContainer).html(html); // makes this dynamic
         $("#team-list").html(html);
         this.bindListEvents();
     }
@@ -51,6 +103,13 @@ export default class ListView {
         $(".table-header").click(function (ev) {
             let sortCol = $(this).attr("data-col");
             console.log(`sortCol=${sortCol}`);
+        });
+    }
+
+    bindWrapperEvents() {
+        this.$resetBtn.click((e) => {
+            this.storage.reset();
+            this.render();
         });
     }
 }

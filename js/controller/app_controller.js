@@ -5,10 +5,15 @@ import ListView from "../view/list_view.js";
 
 export default class AppController {
     constructor() {
-        // this.appViewModel = appViewModel;
         console.log('AppController constructor');
         this.storage = new LocalStorageService(teamData, 'teamData');
-        this.listView = new ListView(this.storage);
+        this.listView = new ListView(this.storage, {
+            listContainerId: 'tableContainer',
+            modalContainerId: 'myModal',
+            alertContainerId: 'alertContainer',
+            entitySingle: 'team',
+            resetBtnId: 'resetBtn',
+        });
         console.log(teamData);
         this.render();
         // this.runTests();
