@@ -94,8 +94,7 @@ export default class ListView {
 
         html += `</tbody></table>`;
 
-        // $(this.$listContainer).html(html); // makes this dynamic
-        $("#team-list").html(html);
+        $(this.$listContainer).html(html); // makes this dynamic
         this.bindListEvents();
     }
 
