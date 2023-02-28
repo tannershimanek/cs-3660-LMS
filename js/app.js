@@ -64,7 +64,7 @@ function popover(item) {
   Build popovers 
   --- --- --- ---
 */
-const countries = ['us', 'ca', 'mx', 'jp', 'sw', 'w'];
+const countries = ['us', 'ca', 'mx', 'jp', 'sw', 'w']; // hacky way to build popovers
 countries.forEach(el => popover(el));
 
 
