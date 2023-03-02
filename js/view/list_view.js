@@ -6,7 +6,7 @@ export default class ListView {
         this.initView();
     }
 
-    get $headaerIcon() {
+    get $headerIcon() {
         return $(`#${this.storage.sortCol}-${this.storage.sortDir}`);
     }
 
@@ -39,7 +39,8 @@ export default class ListView {
     }
     
     async render() {
-        let data = this.storage.list; // getters dont need parenthesis
+        // let data = this.storage.list; // getters dont need parenthesis
+        let data = this.storage.sort(this.storage.sortCol, this.storage.sortDir, true); // getters dont need parenthesis
         console.log('ListView render');
         console.log(data);
         let html = `
@@ -50,19 +51,19 @@ export default class ListView {
                         <i id="name-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
                         <i id="name-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
                     </th>
-                    <th class="table-header" scope="col" >Coach name
-                        <i id="coach-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
-                        <i id="coach-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    <th class="table-header" scope="col" data-col="coachName">Coach name
+                        <i id="coachName-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="coachName-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
                     </th>
-                    <th class="table-header" scope="col" >Coach phone
-                        <i id="phone-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
-                        <i id="phone-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    <th class="table-header" scope="col" data-col="coachPhone">Coach phone
+                        <i id="coachPhone-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="coachPhone-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
                     </th>
-                    <th class="table-header" scope="col" ># of riders
-                        <i id="riders-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
-                        <i id="riders-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
+                    <th class="table-header" scope="col" data-col="numPlayers"># of riders
+                        <i id="numPlayers-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
+                        <i id="numPlayers-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
                     </th>
-                    <th class="table-header" scope="col-lg" >Actions
+                    <th class="table-header" scope="col-lg" data-col="a8s">Actions
                         <i id="actions-asc" class="fa fa-arrow-up" aria-hidden="true" style="display:none"></i>
                         <i id="actions-desc" class="fa fa-arrow-down" aria-hidden="true" style="display:none"></i>
                     </th>
@@ -74,16 +75,15 @@ export default class ListView {
             // todo: popovers
         for (let row of data) {
             html += `<tr id="${row.id}" aria-describedby="tooltip">
-                <tr id="us-btn" aria-describedby="tooltip">
                     <th scope="row">${row.name}</th>
-                    <td>${row.coachName}</td>
-                    <td>${row.coachPhone}</td>
-                    <td>${row.numPlayers}</td>
+                    <th>${row.coachName}</th>
+                    <th>${row.coachPhone}</th>
+                    <th>${row.numPlayers}</th>
                     <td>
                         <div class="d-flex justify-content-center align-items-baseline gap-2 flex-wrap">
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash" type="button" data-bs-toggle="modal" data-bs-id="us"
-                                data-bs-target="#exampleModal" data-bs-whatever="United States"></i>
+                            <i id="delete-${row.id}" class="fa-solid fa-trash" type="button" data-bs-toggle="modal" data-bs-id="${row.name}"
+                                data-bs-target="#exampleModal" data-bs-whatever="${row.name}"></i>
                         </div>
                     </td>
                 </tr>`
@@ -99,9 +99,47 @@ export default class ListView {
     }
 
     bindListEvents() {
-        $(".table-header").click(function (ev) {
-            let sortCol = $(this).attr("data-col");
-            console.log(`sortCol=${sortCol}`);
+        // $(".table-header").click(function (ev) {
+        //     let sortCol = $(this).attr("data-col");
+        //     console.log(`sortCol=${sortCol}`);
+        // });
+
+        let that = this;
+
+        $(".table-header").click((e) => {
+            const dataName = $(e.currentTarget).attr("data-col");
+            let curDirection = this.storage.sortDir;
+
+            console.log(`sortCol=${dataName}`);
+            console.log(`sortDir=${curDirection}`);
+
+            // $(`#${dataName}-${curDirection}`).hide();
+            if (that.storage.sortCol === dataName) {
+                that.storage.sortDir = (curDirection === "asc" ? "desc" : "asc");
+            } else {
+                that.storage.sortCol = 'asc';
+            }
+
+            that.storage.sortCol = dataName;
+            that.render();
+        });
+
+        this.$headerIcon.show();
+        // $(`[data-bs-toggle="popover"]`).popover();
+
+        // update modal info
+        $(`.fa-trash`).click((e) => {
+            const id = $(e.currentTarget).attr("id");
+            const rowId = id.replace("delete-", "");    
+            const teamName = $(`tr#${rowId} th:first-child`).text();
+            console.log(`id=${rowId}`);
+            console.log(teamName);
+
+            $('span#team').text(teamName);
+            $('button#delete-btn').click((e) => {
+                that.storage.delete(parseInt(rowId, 10));
+                that.render();
+            });
         });
     }
 

@@ -23,39 +23,39 @@ $(window).scroll(function(){
   Popover logic 
   --- --- --- ---
 */
-function popover(item) {
-  const btn = document.querySelector(`#${item}-btn`);
-  const toolTip = document.querySelector(`#${item}-tool-tip`);
-  const popperInstance = Popper.createPopper(btn, toolTip, {
-      modifiers: [
-          {
-          name: 'offset',
-          options: {
-              offset: [0, -150],
-          },
-          },
-      ],
-    });
-  function show() {
-    toolTip.setAttribute('data-show', '');
-    popperInstance.update();
-  }
+// function popover(item) {
+//   const btn = document.querySelector(`#${item}-btn`);
+//   const toolTip = document.querySelector(`#${item}-tool-tip`);
+//   const popperInstance = Popper.createPopper(btn, toolTip, {
+//       modifiers: [
+//           {
+//           name: 'offset',
+//           options: {
+//               offset: [0, -150],
+//           },
+//           },
+//       ],
+//     });
+//   function show() {
+//     toolTip.setAttribute('data-show', '');
+//     popperInstance.update();
+//   }
 
-  function hide() {
-      toolTip.removeAttribute('data-show');
-  }
+//   function hide() {
+//       toolTip.removeAttribute('data-show');
+//   }
 
-  const showEvents = ['mouseenter', 'focus'];
-  const hideEvents = ['mouseleave', 'blur'];
+//   const showEvents = ['mouseenter', 'focus'];
+//   const hideEvents = ['mouseleave', 'blur'];
 
-  showEvents.forEach((event) => {
-      btn.addEventListener(event, show);
-  });
+//   showEvents.forEach((event) => {
+//       btn.addEventListener(event, show);
+//   });
 
-  hideEvents.forEach((event) => {
-      btn.addEventListener(event, hide);
-  });
-}
+//   hideEvents.forEach((event) => {
+//       btn.addEventListener(event, hide);
+//   });
+// }
 
 
 
@@ -113,3 +113,11 @@ const closeToast = $("#close-toast").click(() => {
     toast.addClass('hide');
     
 });
+
+
+/*
+  --- --- --- ---
+  Modal Logic
+  --- --- --- ---
+*/
+
