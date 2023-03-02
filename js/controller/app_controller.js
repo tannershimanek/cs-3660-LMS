@@ -9,7 +9,7 @@ export default class AppController {
         this.storage = new LocalStorageService(teamData, 'teamData');
         this.listView = new ListView(this.storage, {
             listContainerId: 'tableContainer',
-            modalContainerId: 'myModal',
+            modalContainerId: 'exampleModal',
             alertContainerId: 'alertContainer',
             entitySingle: 'team',
             resetBtnId: 'resetBtn',
