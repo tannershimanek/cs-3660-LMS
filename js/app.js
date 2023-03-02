@@ -64,8 +64,8 @@ $(window).scroll(function(){
   Build popovers 
   --- --- --- ---
 */
-const countries = ['us', 'ca', 'mx', 'jp', 'sw', 'w']; // hacky way to build popovers
-countries.forEach(el => popover(el));
+// const countries = ['us']; // hacky way to build popovers
+// countries.forEach(el => popover(el));
 
 
 
@@ -74,45 +74,45 @@ countries.forEach(el => popover(el));
   Toast logic 
   --- --- --- ---
 */
-let team = '';
-let id = '';
+// let team = '';
+// let id = '';
 
-let exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-    let button = event.relatedTarget;
-    let recipient = button.getAttribute('data-bs-whatever');
-    let modalBodyInput = exampleModal.querySelector('#team');
-    modalBodyInput.innerText = recipient;
-    team = recipient;
-    id = button.getAttribute('data-bs-id');
-});
+// let exampleModal = document.getElementById('exampleModal')
+// exampleModal.addEventListener('show.bs.modal', function (event) {
+//     let button = event.relatedTarget;
+//     let recipient = button.getAttribute('data-bs-whatever');
+//     let modalBodyInput = exampleModal.querySelector('#team');
+//     modalBodyInput.innerText = recipient;
+//     team = recipient;
+//     id = button.getAttribute('data-bs-id');
+// });
 
-const toast = $('#liveToast');
-const deleteBtn = $('#delete-btn').click(() => {
-    // delete element
-    $(`#${id}-btn`).detach();
-    $(`#${id}-tool-tip`).detach();
+// const toast = $('#liveToast');
+// const deleteBtn = $('#delete-btn').click(() => {
+//     // delete element
+//     $(`#${id}-btn`).detach();
+//     $(`#${id}-tool-tip`).detach();
 
-    // show toast
-    toast.removeClass('hide');
-    toast.addClass('show');
+//     // show toast
+//     toast.removeClass('hide');
+//     toast.addClass('show');
 
-    // update val
-    $('#team-name-msg').html(`<span>${team}</span>`);
-    console.log($('#team-name-msg'));
+//     // update val
+//     $('#team-name-msg').html(`<span>${team}</span>`);
+//     console.log($('#team-name-msg'));
 
-    // auto close after delay
-    setTimeout(() => {
-        toast.removeClass('show');
-        toast.addClass('hide');
-    }, 3000);
-});
+//     // auto close after delay
+//     setTimeout(() => {
+//         toast.removeClass('show');
+//         toast.addClass('hide');
+//     }, 3000);
+// });
 
-const closeToast = $("#close-toast").click(() => {
-    toast.removeClass('show');
-    toast.addClass('hide');
+// const closeToast = $("#close-toast").click(() => {
+//     toast.removeClass('show');
+//     toast.addClass('hide');
     
-});
+// });
 
 
 /*

@@ -18,7 +18,7 @@ $theme-colors: (
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-$toolTips: ("us", "ca", 'mx', 'jp', 'sw', 'w');
+$toolTips: ("_1", "_2", '_3', '_4', '_5', '_6',);
 
 @each $country in $toolTips {
 
@@ -174,5 +174,12 @@ i:hover {
     margin: auto;
 }
 
+.opacity-100 {
+    opacity: 1;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
 
 // sass --watch ./css/main.scss ./css/main.css

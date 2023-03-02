@@ -74,7 +74,18 @@ export default class ListView {
             // todo: icons
             // todo: popovers
         for (let row of data) {
-            html += `<tr id="${row.id}" aria-describedby="tooltip">
+            html += `
+            <div id="_${row.id}-tool-tip" role="tooltip">
+                <div class="d-flex gap-2 align-items-center">
+                    <img src="../imgs/${row.name}.svg" width="25px" />
+                    <h6 class="mt-2">${row.name}</h6>
+                    </div>
+                    <div>${row.coachName}</div>
+                    <div>${row.coachPhone}</div>
+                    <div><span>${row.numPlayers}</span> Riders</div>
+                <div id="arrow" data-popper-arrow></div>
+            </div>
+            <tr id="_${row.id}-btn" aria-describedby="tooltip">
                     <th scope="row">${row.name}</th>
                     <th>${row.coachName}</th>
                     <th>${row.coachPhone}</th>
@@ -82,7 +93,7 @@ export default class ListView {
                     <td>
                         <div class="d-flex justify-content-center align-items-baseline gap-2 flex-wrap">
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <i id="delete-${row.id}" class="fa-solid fa-trash" type="button" data-bs-toggle="modal" data-bs-id="${row.name}"
+                            <i id="delete-_${row.id}" class="fa-solid fa-trash" type="button" data-bs-toggle="modal" data-bs-id="${row.name}"
                                 data-bs-target="#exampleModal" data-bs-whatever="${row.name}"></i>
                         </div>
                     </td>
@@ -125,30 +136,77 @@ export default class ListView {
         });
 
         this.$headerIcon.show();
-        // $(`[data-bs-toggle="popover"]`).popover();
+        this.storage.model.data.forEach(el => this.popover(el.id));
 
         // update modal info
         $(`.fa-trash`).click((e) => {
             const id = $(e.currentTarget).attr("id");
-            const rowId = id.replace("delete-", "");    
+            const rowId = id.replace("delete-", "") + "-btn";   
             const teamName = $(`tr#${rowId} th:first-child`).text();
             console.log(`id=${rowId}`);
             console.log(teamName);
 
             $('span#team').text(teamName);
             $('button#delete-btn').click((e) => {
-                that.storage.delete(parseInt(rowId, 10));
+                that.storage.delete(
+                    parseInt(rowId.replace('_', '')
+                            .replace('-btn', ''), 10));
                 that.render();
+
+                that.$alertContainer.removeClass('opacity-0');
+                that.$alertContainer.addClass('opacity-100');
+
+                setTimeout(() => {
+                    that.$alertContainer.removeClass('opacity-100');
+                    that.$alertContainer.addClass('opacity-0');
+                }, 2.5 * 1000);
             });
         });
     }
 
     bindWrapperEvents() {
         this.$resetBtn.click((e) => {
+            // console.log(this.storage.reset)
             this.storage.reset();
+            // this.storage = this.storage.retrieve(); 
+            // this.storage
             this.render();
         });
     }
+
+    popover(item) {
+        const btn = document.querySelector(`#_${item}-btn`);
+        const toolTip = document.querySelector(`#_${item}-tool-tip`);
+        const popperInstance = Popper.createPopper(btn, toolTip, {
+            modifiers: [
+                {
+                name: 'offset',
+                options: {
+                    offset: [0, -150],
+                },
+                },
+            ],
+          });
+        function show() {
+          toolTip.setAttribute('data-show', '');
+          popperInstance.update();
+        }
+      
+        function hide() {
+            toolTip.removeAttribute('data-show');
+        }
+      
+        const showEvents = ['mouseenter', 'focus'];
+        const hideEvents = ['mouseleave', 'blur'];
+      
+        showEvents.forEach((event) => {
+            btn.addEventListener(event, show);
+        });
+      
+        hideEvents.forEach((event) => {
+            btn.addEventListener(event, hide);
+        });
+      }
 }
 
 

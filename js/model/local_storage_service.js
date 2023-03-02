@@ -77,7 +77,7 @@ export default class LocalStorageService {
         const idx = this.getItemIndex(removeId);
         if (idx != -1) {
             this.model.data.splice(idx,1);
-            this.store();
+            // this.store();
         }
     }
  
@@ -88,7 +88,7 @@ export default class LocalStorageService {
       //should restore model from origModel 
       //(use utility function 'cloneObject' at bottom of file)
       // -- DONE -- //
-      localStorage.clear();
+      this.clear();
       this.model = this.cloneObject(this.origModel);
       this.store();
     }
@@ -101,6 +101,7 @@ export default class LocalStorageService {
     store() {
        //TODO: should store your model in localStorage
        // -- DONE -- //
+       console.log('clone', this.model)
        localStorage.setItem(this.key, JSON.stringify(this.model));
 
     }
@@ -156,8 +157,8 @@ export default class LocalStorageService {
       this.model.app.sortCol = col;
       this.model.app.sortDir = direction;
 
-      if (perm === true) {
-         this.model.data = data;
+      if (perm) {
+         this.model.data = this.cloneObject(data);
          this.store();
       }
       

@@ -10840,7 +10840,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-#us-tool-tip {
+#_1-tool-tip {
   background: #333;
   color: white;
   font-weight: bold;
@@ -10850,15 +10850,15 @@ textarea.form-control-lg {
   display: none;
 }
 
-#us-tool-tip[data-show] {
+#_1-tool-tip[data-show] {
   display: block;
 }
 
-#us-tool-tip[data-popper-placement^=top] > #arrow {
+#_1-tool-tip[data-popper-placement^=top] > #arrow {
   bottom: -4px;
 }
 
-#ca-tool-tip {
+#_2-tool-tip {
   background: #333;
   color: white;
   font-weight: bold;
@@ -10868,15 +10868,15 @@ textarea.form-control-lg {
   display: none;
 }
 
-#ca-tool-tip[data-show] {
+#_2-tool-tip[data-show] {
   display: block;
 }
 
-#ca-tool-tip[data-popper-placement^=top] > #arrow {
+#_2-tool-tip[data-popper-placement^=top] > #arrow {
   bottom: -4px;
 }
 
-#mx-tool-tip {
+#_3-tool-tip {
   background: #333;
   color: white;
   font-weight: bold;
@@ -10886,15 +10886,15 @@ textarea.form-control-lg {
   display: none;
 }
 
-#mx-tool-tip[data-show] {
+#_3-tool-tip[data-show] {
   display: block;
 }
 
-#mx-tool-tip[data-popper-placement^=top] > #arrow {
+#_3-tool-tip[data-popper-placement^=top] > #arrow {
   bottom: -4px;
 }
 
-#jp-tool-tip {
+#_4-tool-tip {
   background: #333;
   color: white;
   font-weight: bold;
@@ -10904,15 +10904,15 @@ textarea.form-control-lg {
   display: none;
 }
 
-#jp-tool-tip[data-show] {
+#_4-tool-tip[data-show] {
   display: block;
 }
 
-#jp-tool-tip[data-popper-placement^=top] > #arrow {
+#_4-tool-tip[data-popper-placement^=top] > #arrow {
   bottom: -4px;
 }
 
-#sw-tool-tip {
+#_5-tool-tip {
   background: #333;
   color: white;
   font-weight: bold;
@@ -10922,15 +10922,15 @@ textarea.form-control-lg {
   display: none;
 }
 
-#sw-tool-tip[data-show] {
+#_5-tool-tip[data-show] {
   display: block;
 }
 
-#sw-tool-tip[data-popper-placement^=top] > #arrow {
+#_5-tool-tip[data-popper-placement^=top] > #arrow {
   bottom: -4px;
 }
 
-#w-tool-tip {
+#_6-tool-tip {
   background: #333;
   color: white;
   font-weight: bold;
@@ -10940,11 +10940,11 @@ textarea.form-control-lg {
   display: none;
 }
 
-#w-tool-tip[data-show] {
+#_6-tool-tip[data-show] {
   display: block;
 }
 
-#w-tool-tip[data-popper-placement^=top] > #arrow {
+#_6-tool-tip[data-popper-placement^=top] > #arrow {
   bottom: -4px;
 }
 
@@ -11078,6 +11078,14 @@ i:hover {
   position: relative;
   border-radius: 1px;
   margin: auto;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 /*# sourceMappingURL=main.css.map */
