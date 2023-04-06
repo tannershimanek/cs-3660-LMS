@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/globals.scss";
+import { Home } from "./views/Home";
+import { Teams } from "./views/Teams";
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "./components/Layout/Layout";
+import { NoMatch } from "./components/Router/NoMatch";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+         <Routes>
+           <Route path="/" index element={<Layout><Home /></Layout>} />
+           <Route path="/teams" element={<Layout><Teams /></Layout>} />
+           <Route path="*" element={<Layout><NoMatch /></Layout>} />
+         </Routes>
     </div>
   );
 }

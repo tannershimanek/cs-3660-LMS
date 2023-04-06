@@ -1,0 +1,92 @@
+// @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+$theme-colors: (
+  "primary": #000F1E,
+  "danger": #DB0A40,
+  "warning": #FFCC00,
+  "info": #123778,
+  "secondary": #607F9B,
+  "success": #26A247,
+  "light": #F8F8F8,
+  "white": #ffffff,
+  "dark": #000F1E,
+);
+
+
+@import "~bootstrap/scss/bootstrap";
+
+button.btn-outline-success {
+  &:hover {
+    color: #ffffff;
+  }
+}
+.shell {
+  max-width: 1320px;
+  margin: auto;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+svg:hover {
+  cursor: pointer;
+}
+
+.opacity-8 {
+  opacity: 0.8;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+footer {
+  height: 22rem;
+  max-width: 1320px;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+p:not(.d-flex) {
+  line-height: 2rem;
+}
+
+.bg-image {
+  background-image: url("../../public/Images/test6.avif");
+  background-position: center;
+  max-width: 55rem;
+  height: 25rem;
+  position: relative;
+  border-radius: 1px;
+  margin: auto;
+}
+
+table:hover {
+  cursor: pointer;
+}
+
+.animate-1 {
+  transition: transform .1s ease-in;
+}
+
+.animate-1:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+}
