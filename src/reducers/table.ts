@@ -27,9 +27,11 @@ export const tableSlice = createSlice({
     deleteRow: (state, action) => {
       console.log(action.payload)
       state.value.data = state.value.data.filter(
+        // eslint-disable-next-line
         (item) => item.id != action.payload
       );
       filteredState = filteredState.filter(
+        // eslint-disable-next-line
         (item) => item.id != action.payload
       );
     },
