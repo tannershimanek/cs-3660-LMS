@@ -9,11 +9,33 @@ import { NoMatch } from "./components/Router/NoMatch";
 function App() {
   return (
     <div>
-         <Routes>
-           <Route path="/" index element={<Layout><Home /></Layout>} />
-           <Route path="/teams" element={<Layout><Teams /></Layout>} />
-           <Route path="*" element={<Layout><NoMatch /></Layout>} />
-         </Routes>
+      <Routes>
+        <Route
+          path="/"
+          index
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path="/teams"
+          element={
+            <Layout>
+              <Teams />
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <NoMatch />
+            </Layout>
+          }
+        />
+      </Routes>
     </div>
   );
 }

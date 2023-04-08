@@ -10,6 +10,7 @@ export const teamData = {
       coachName: "Cedric Murphy",
       coachPhone: "+1 202-918-2132",
       numPlayers: "3",
+      image: "United States.svg",
     },
     {
       id: 1,
@@ -17,6 +18,7 @@ export const teamData = {
       coachName: "Lewis Torres",
       coachPhone: "+1 346-477-0351",
       numPlayers: "4",
+      image: "Canada.svg",
     },
     {
       id: 2,
@@ -24,6 +26,7 @@ export const teamData = {
       coachName: "Clinton Harris",
       coachPhone: "+1 224-290-7759",
       numPlayers: "2",
+      image: "Mexico.svg",
     },
     {
       id: 3,
@@ -31,6 +34,7 @@ export const teamData = {
       coachName: "Wilfred Vega",
       coachPhone: "+1 505-292-3024",
       numPlayers: "2",
+      image: "Japan.svg",
     },
     {
       id: 4,
@@ -38,6 +42,7 @@ export const teamData = {
       coachName: "Darnell Burke",
       coachPhone: "+1 239-538-3914",
       numPlayers: "3",
+      image: "Sweden.svg",
     },
     {
       id: 5,
@@ -45,6 +50,7 @@ export const teamData = {
       coachName: "Calvin Martinez",
       coachPhone: "+1 505-255-3838",
       numPlayers: "2",
+      image: "Austria.svg",
     },
   ],
 };

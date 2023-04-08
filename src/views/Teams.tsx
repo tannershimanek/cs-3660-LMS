@@ -1,5 +1,4 @@
 import { TeamTable } from "../components/TeamTable/Table";
-// import { teamData } from "../services/teamData";
 import { Section } from "../components/Section/Section";
 import { sectionFourTitle, sectionFourContent } from "../services/pageData";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,14 +9,15 @@ import { ConfirmationModal } from "../components/Modal/ConfirmationModal";
 import { toggleModal } from "../reducers/modal";
 import { setMessage, toggleAlert } from "../reducers/alerts";
 import { FeaturedImage } from "../components/FeaturedImage/FeaturedImage";
+import { AlertState, TableState } from "../types";
 
-export const Teams = () => {
+export const Teams: React.FC = () => {
   const [btnDisabled, setBtnDisabled] = useState(false);
 
-  const table = useSelector((state: any) => state.table);
+  const table = useSelector((state: any) => state.table) as TableState;
   const dispatch = useDispatch();
   const tableData = JSON.parse(JSON.stringify(table.value.data));
-  const alertData = useSelector((state: any) => state.alert);
+  const alertData = useSelector((state: AlertState) => state.alert);
 
   document.title = "MTB Teams";
 

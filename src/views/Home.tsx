@@ -8,7 +8,7 @@ import {
   sectionThreeContent,
 } from "../services/pageData";
 
-export const Home = () => {
+export const Home: React.FC = () => {
   document.title = "World MTB League";
   return (
     <>
@@ -52,6 +52,5 @@ export const Home = () => {
       />
     </>
 
-    // </div>
   );
 };

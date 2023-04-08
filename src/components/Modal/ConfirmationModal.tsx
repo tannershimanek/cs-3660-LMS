@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteRow } from "../../reducers/table";
 import { toggleAlert } from "../../reducers/alerts";
 
-export const ConfirmationModal = (props: any) => {
+export const ConfirmationModal: React.FC<any> = (props: any) => {
   const modalData = useSelector((state: any) => state.modal);
   const dispatch = useDispatch();
 

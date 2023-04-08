@@ -1,4 +1,4 @@
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className="container-fluid text-primary bg-light mt-5 p-5">
       <div className="d-flex justify-content-between flex-wrap">

@@ -1,9 +1,10 @@
 import Alert from "react-bootstrap/Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleAlert } from "../../reducers/alerts";
+import { AlertState } from "../../types";
 
-export const CustomAlert = () => {
-  const alert = useSelector((state: any) => state.alert);
+export const CustomAlert: React.FC = () => {
+  const alert = useSelector((state: AlertState) => state.alert);
   const dispatch = useDispatch();
 
   return (
