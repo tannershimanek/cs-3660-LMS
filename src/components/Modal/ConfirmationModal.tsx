@@ -1,12 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteRow } from "../../reducers/table";
+import { deleteTeam } from "../../reducers/table";
 import { toggleAlert } from "../../reducers/alerts";
+import { AppDispatch } from "../../app/store";
+
+export const deleteTeamWithId = async (id: any) => {
+  await fetch(`http://localhost:8080/teams/${id}}`, { method: "DELETE"});
+  const response = await fetch("http://localhost:8080/teams/");
+  const data = await response.json();
+  return data;
+}
 
 export const ConfirmationModal: React.FC<any> = (props: any) => {
   const modalData = useSelector((state: any) => state.modal);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <Modal
@@ -40,7 +48,9 @@ export const ConfirmationModal: React.FC<any> = (props: any) => {
           className={"btn-danger"}
           onClick={() => {
             props.onHide();
-            dispatch(deleteRow(modalData.value.id));
+            // dispatch(deleteRow(modalData.value.id));
+            dispatch(deleteTeam(modalData.value.id));
+            deleteTeamWithId(modalData.value.id);
             dispatch(toggleAlert(true));
           }}
         >

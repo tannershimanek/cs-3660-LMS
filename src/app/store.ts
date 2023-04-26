@@ -3,6 +3,7 @@ import tableReducer from "../reducers/table";
 import viewReducer from "../reducers/views";
 import modalReducer from "../reducers/modal";
 import alertReducer from "../reducers/alerts";
+import editReducer from "../reducers/edit";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     table: tableReducer,
     modal: modalReducer,
     alert: alertReducer,
+    edit: editReducer,
   }
 });
 

@@ -1,3 +1,35 @@
+// import { getTeamData } from "./getTeamData";
+
+// const tmdta = getTeamData();
+
+// tmdta.then((data) => {
+//   console.log(data);
+// });
+
+
+
+
+  // const fetchTeamData = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:8080/teams/");
+  //     const data = await response.json();
+  //     return data;
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+
+  // export const teamData = {app: { sortCol: "teamName", sortDir: "asc"}, data: fetchTeamData()};
+
+
+
+
+
+
+// ------------------------------
+
 export const teamData = {
   app: {
     sortCol: "name",

@@ -2,37 +2,26 @@ import { TeamTable } from "../components/TeamTable/Table";
 import { Section } from "../components/Section/Section";
 import { sectionFourTitle, sectionFourContent } from "../services/pageData";
 import { useDispatch, useSelector } from "react-redux";
-import { resetTable } from "../reducers/table";
+import { fetchTeamData } from "../reducers/table";
 import { CustomAlert } from "../components/Alert/CustomAlert";
-import { useState } from "react";
+import { useEffect } from "react";
 import { ConfirmationModal } from "../components/Modal/ConfirmationModal";
 import { toggleModal } from "../reducers/modal";
-import { setMessage, toggleAlert } from "../reducers/alerts";
 import { FeaturedImage } from "../components/FeaturedImage/FeaturedImage";
 import { AlertState, TableState } from "../types";
+import { AppDispatch } from "../app/store";
 
 export const Teams: React.FC = () => {
-  const [btnDisabled, setBtnDisabled] = useState(false);
-
+  document.title = "MTB Teams";
   const table = useSelector((state: any) => state.table) as TableState;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const tableData = JSON.parse(JSON.stringify(table.value.data));
   const alertData = useSelector((state: AlertState) => state.alert);
-
-  document.title = "MTB Teams";
-
-  const handleResetBtn = () => {
-    dispatch(resetTable());
-    dispatch(setMessage("Table reset successfully."));
-    dispatch(toggleAlert(true));
-    setBtnDisabled(true);
-    setTimeout(() => {
-      dispatch(toggleAlert(false))
-      setBtnDisabled(false);
-    }, 1000 * 2);
-  };
-
   const modalData = useSelector((state: any) => state.modal);
+
+  useEffect(() => {
+    dispatch(fetchTeamData())
+  }, [dispatch]);
 
   return (
     <>
@@ -46,14 +35,13 @@ export const Teams: React.FC = () => {
         onHide={() => dispatch(toggleModal(false))} />
 
         <TeamTable options={table.value.app} data={tableData} />
-        <button
+        <a
           className="btn btn-secondary text-white"
+          href="/Create"
           style={{ width: "100%" }}
-          onClick={handleResetBtn}
-          disabled={btnDisabled}
         >
-          Reset
-        </button>
+          Add new team
+        </a>
 
         {alertData.value.showAlert ? <CustomAlert /> : null}
       </div>
@@ -69,3 +57,4 @@ export const Teams: React.FC = () => {
     </>
   );
 };
+

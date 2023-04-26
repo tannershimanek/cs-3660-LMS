@@ -107,6 +107,7 @@ export interface AlertState {
     value: {
       message: string;
       showAlert: boolean;
+      variant: string;
     };
   };
 }

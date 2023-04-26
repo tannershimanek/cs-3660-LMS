@@ -6,11 +6,15 @@ export const alertSlice = createSlice({
     value: {
         message: "...",
         showAlert: false,
+        variant: "success",
     }
   },
   reducers: {
     setMessage: (state, action) => { 
         state.value.message = action.payload;
+    },
+    setVariant: (state, action) => {
+        state.value.variant = action.payload;
     },
     toggleAlert: (state, action) => {
         state.value.showAlert = action.payload;
@@ -18,5 +22,5 @@ export const alertSlice = createSlice({
   },
 });
 
-export const { toggleAlert, setMessage } = alertSlice.actions;
+export const { toggleAlert, setMessage, setVariant } = alertSlice.actions;
 export default alertSlice.reducer;

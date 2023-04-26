@@ -11,11 +11,14 @@ import {
   TableRowProps,
   TableDataObject,
 } from "../../types";
+import { AppDispatch } from "../../app/store";
+import { getTeam } from "../../reducers/table";
+import { setRowId } from "../../reducers/edit";
 
 
 const TableRow: React.FC<TableRowProps> = ({ item }) => {
   const row = useRef(null);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleDelete = (el: any) => {
     const [id, teamName] = el.id.split("-");
@@ -23,6 +26,14 @@ const TableRow: React.FC<TableRowProps> = ({ item }) => {
     dispatch(setMessage(`${teamName} deleted successfully`));
     dispatch(setName(teamName));
     dispatch(toggleModal(true));
+  };
+
+  const handleEdit = (el: any) => {
+    console.log('edit', el);
+    const [id, teamName] = el.id.split("-");
+    console.log(id)
+    dispatch(getTeam(id));
+    dispatch(setRowId(id));
   };
 
   return (
@@ -59,7 +70,7 @@ const TableRow: React.FC<TableRowProps> = ({ item }) => {
             )
         )}
         <td>
-          <FaEdit className={"text-info"} onClick={() => console.log("edit")} />
+          <a href="/Edit"><FaEdit className={"text-info"} onClick={() => handleEdit(row.current)} /></a>
           <FaTrash
             className={"text-danger"}
             onClick={() => handleDelete(row.current)}

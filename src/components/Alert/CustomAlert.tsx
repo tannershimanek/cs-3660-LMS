@@ -10,7 +10,7 @@ export const CustomAlert: React.FC = () => {
   return (
     <Alert
       className="mt-3"
-      variant="success"
+      variant={alert.value.variant}
       onClose={() => {
         dispatch(toggleAlert(false));
       }}
