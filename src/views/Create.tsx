@@ -9,7 +9,7 @@ import { setMessage, toggleAlert, setVariant } from "../reducers/alerts";
 import { createTeam, getCoaches } from "../services/apiCalls";
 
 export const Create: React.FC = () => {
-    document.title = "Create MTB Teams";
+  document.title = "Create MTB Teams";
   const dispatch = useDispatch<AppDispatch>();
   const [validated, setValidated] = useState(false);
   const teamData = useSelector((state: any) => state.edit) as any;
@@ -23,7 +23,7 @@ export const Create: React.FC = () => {
   const [numRiders, setNumRiders] = useState(editTeamData.numPlayers);
   const [teamName, setTeamName] = useState(editTeamData.teamName);
   const [coachPhone, setCoachPhone] = useState(editTeamData.coachPhone);
-  const [coachId, setCoachId] = useState(editTeamData.coachId);
+  const [coachId, setCoachId] = useState("-1");
   const [teamId, setTeamId] = useState(0);
   const [coaches, setCoaches] = useState([]);
 
@@ -34,40 +34,43 @@ export const Create: React.FC = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || parseInt(coachId, 10) <= 0) {
       event.preventDefault();
       event.stopPropagation();
-    }
+      dispatch(setMessage(`${teamName} uh oh!`));
+      dispatch(setVariant("danger"));
+      dispatch(toggleAlert(true));
+    } else {
+      
+      const body = {
+        id: teamId,
+        teamName: teamName,
+        coach_id: coachId,
+        coachPhone: coachPhone,
+        numPlayers: numRiders,
+        image: "new team image.svg",
+      };
 
-    setValidated(true);
-    const body = {
-      id: teamId,
-      teamName: teamName,
-      coach_id: coachId,
-      coachPhone: coachPhone,
-      numPlayers: numRiders,
-      image: "new team image.svg",
-    };
-
-    createTeam(`${teamId}`, body)
-      .then((resp) => {
-        if (resp.status !== 200) {
+      createTeam(`${teamId}`, body)
+        .then((resp) => {
+          if (resp.status !== 200) {
             dispatch(setMessage(`uh oh, something went wrong!`));
             dispatch(setVariant("danger"));
             dispatch(toggleAlert(true));
-        } else {
+          } else {
             dispatch(setMessage(`team ${teamName}, created successfully`));
             dispatch(setVariant("success"));
             dispatch(toggleAlert(true));
-        }
-      })
-      .catch((err) =>  {
-        console.error(err);
-        dispatch(setMessage(`${teamName} uh oh!`));
-        dispatch(setVariant("danger"));
-        dispatch(toggleAlert(true));
-      });
-
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch(setMessage(`${teamName} uh oh!`));
+          dispatch(setVariant("danger"));
+          dispatch(toggleAlert(true));
+        });
+    }
+    setValidated(true);
     setTimeout(() => {
       dispatch(toggleAlert(false));
     }, 1000 * 2);
@@ -93,6 +96,9 @@ export const Create: React.FC = () => {
             placeholder="Enter team id number"
             onChange={(e) => setTeamId(parseInt(e.target.value, 10))}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter a valide team id.
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3" controlId="teamName">
           <Form.Label>Team name</Form.Label>
@@ -102,20 +108,35 @@ export const Create: React.FC = () => {
             placeholder="Enter team name"
             onChange={(e) => setTeamName(e.target.value)}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter a team name.
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="coachId">
           <Form.Label>Coach</Form.Label>
           <Form.Select
             aria-label="Select a coach"
+            isInvalid={validated && parseInt(coachId, 10) < 0}
+            required
             value={coachId}
-            onChange={(e) => setCoachId(e.target.value)}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setCoachId(e.target.value);
+            }}
           >
-            <option disabled>Select a coach</option>
+            <option disabled value={-1}>
+              Select a coach
+            </option>
             {coaches.map((coach: any) => (
-              <option key={coach.coachId} value={coach.coachId}>{coach.coachName}</option>
+              <option key={coach.coachId} value={coach.coachId}>
+                {coach.coachName}
+              </option>
             ))}
           </Form.Select>
+          <Form.Control.Feedback type="invalid">
+            Please choose a coach.
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="numberOfPlayers">
@@ -126,6 +147,9 @@ export const Create: React.FC = () => {
             placeholder="Enter number of riders"
             onChange={(e) => setNumRiders(e.target.value)}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter the number of riders.
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Button variant="secondary" className={"text-white"} type="submit">
@@ -137,5 +161,3 @@ export const Create: React.FC = () => {
     </>
   );
 };
-
-
